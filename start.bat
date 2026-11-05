@@ -1,5 +1,5 @@
 @echo off
-title DiscFinanci - Servidor Ativo (Portas 8001 e 3001)
+title DiscFinanci - Servidor Ativo (Portas 8002 e 3002)
 cd /d "%~dp0"
 echo ================================================================
 echo           DISCFINANCI - SISTEMA DE CONTROLE FINANCEIRO

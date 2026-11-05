@@ -71,7 +71,7 @@ export default function AuthModal({ onSuccess }) {
     } catch (err) {
       if (err.message && err.message.toLowerCase().includes('failed to fetch')) {
         setIsOffline(true);
-        setErrorMsg('Não foi possível conectar ao servidor backend (porta 8001). Verifique se o start.bat está aberto.');
+        setErrorMsg('Não foi possível conectar ao servidor backend (porta 8002). Verifique se o start.bat está aberto.');
       } else {
         setErrorMsg(err.message || 'Erro durante a autenticação.');
       }
@@ -91,7 +91,7 @@ export default function AuthModal({ onSuccess }) {
               <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
               <div>
                 <strong className="text-white block font-semibold">Servidor Backend Desconectado</strong>
-                O serviço FastAPI na porta 8001 não está rodando. Execute o arquivo <strong>start.bat</strong> na pasta do projeto.
+                O serviço FastAPI na porta 8002 não está rodando. Execute o arquivo <strong>start.bat</strong> na pasta do projeto.
               </div>
             </div>
             <button

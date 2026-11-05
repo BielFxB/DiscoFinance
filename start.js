@@ -9,15 +9,15 @@ const frontendDir = path.join(__dirname, 'frontend');
 console.log('\x1b[36m%s\x1b[0m', '================================================================');
 console.log('\x1b[36m%s\x1b[0m', '           INICIANDO DISCFINANCI (BACKEND + FRONTEND)           ');
 console.log('\x1b[36m%s\x1b[0m', '================================================================');
-console.log('  Backend:  \x1b[33mhttp://127.0.0.1:8001\x1b[0m (Swagger: /docs)');
-console.log('  Frontend: \x1b[32mhttp://127.0.0.1:3001\x1b[0m');
+console.log('  Backend:  \x1b[33mhttp://127.0.0.1:8002\x1b[0m (Swagger: /docs)');
+console.log('  Frontend: \x1b[32mhttp://127.0.0.1:3002\x1b[0m');
 console.log('\x1b[36m%s\x1b[0m', '================================================================\n');
 
-// 0. Liberar portas 8001 e 3001 se estiverem presas por processos anteriores
+// 0. Liberar portas 8002 e 3002 se estiverem presas por processos anteriores
 function freePorts() {
   if (!isWin) return;
   try {
-    const cmd = 'powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 8001,3001 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique"';
+    const cmd = 'powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 8002,3002 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique"';
     const output = execSync(cmd).toString().trim();
     if (output) {
       const pids = output.split(/\r?\n/).map((s) => s.trim()).filter((s) => s && s !== '0');
@@ -45,8 +45,8 @@ let isShuttingDown = false;
 // 1. Iniciar Backend com Auto-Restart em caso de queda
 function startBackend() {
   if (isShuttingDown) return;
-  console.log('\x1b[34m[SISTEMA]\x1b[0m Iniciando Backend FastAPI na porta 8001...');
-  backendProcess = spawn(pyExe, ['-m', 'uvicorn', 'app.main:app', '--host', '127.0.0.1', '--port', '8001', '--reload'], {
+  console.log('\x1b[34m[SISTEMA]\x1b[0m Iniciando Backend FastAPI na porta 8002...');
+  backendProcess = spawn(pyExe, ['-m', 'uvicorn', 'app.main:app', '--host', '127.0.0.1', '--port', '8002', '--reload'], {
     cwd: backendDir,
     stdio: 'pipe',
   });
@@ -76,7 +76,7 @@ function startBackend() {
 // 2. Iniciar Frontend com Auto-Restart
 function startFrontend() {
   if (isShuttingDown) return;
-  console.log('\x1b[34m[SISTEMA]\x1b[0m Iniciando Frontend Vite na porta 3001...');
+  console.log('\x1b[34m[SISTEMA]\x1b[0m Iniciando Frontend Vite na porta 3002...');
   frontendProcess = spawn(npmCmd, ['run', 'dev'], {
     cwd: frontendDir,
     shell: isWin,
@@ -110,8 +110,8 @@ startFrontend();
 
 // 3. Abrir Navegador após 3.5 segundos
 setTimeout(() => {
-  console.log('\n\x1b[35m[NAVEGADOR]\x1b[0m Abrindo http://127.0.0.1:3001 no seu navegador...');
-  const openCmd = isWin ? 'start http://127.0.0.1:3001' : 'open http://127.0.0.1:3001';
+  console.log('\n\x1b[35m[NAVEGADOR]\x1b[0m Abrindo http://127.0.0.1:3002 no seu navegador...');
+  const openCmd = isWin ? 'start http://127.0.0.1:3002' : 'open http://127.0.0.1:3002';
   exec(openCmd, () => {});
 }, 3500);
 

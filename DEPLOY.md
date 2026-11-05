@@ -9,9 +9,9 @@ Este guia foi desenhado sob medida para o seu servidor Linux (`frdata@frdata:~`)
 | Serviço | Porta Interna | Descrição |
 | :--- | :--- | :--- |
 | **GamyCoins (Atual)** | `3000` / `8000` | Intocados. Continuam rodando normalmente. |
-| **DiscFinanci API** | `8001` | FastAPI + Bot Discord assíncrono (Python 3.10+). |
-| **DiscFinanci Web** | `3001` | Servidor Node de produção leve (`prod_server.js`). Serve o React compilado e faz proxy reverso de `/api` para a porta 8001. |
-| **Cloudflare Tunnel** | `localhost:3001` | **Apenas 1 rota necessária!** O subdomínio HTTPS aponta para a porta 3001 e acessa tanto o site quanto a API sem erros de CORS. |
+| **DiscFinanci API** | `8002` | FastAPI + Bot Discord assíncrono (Python 3.10+). |
+| **DiscFinanci Web** | `3002` | Servidor Node de produção leve (`prod_server.js`). Serve o React compilado e faz proxy reverso de `/api` para a porta 8002. |
+| **Cloudflare Tunnel** | `localhost:3002` | **Apenas 1 rota necessária!** O subdomínio HTTPS aponta para a porta 3002 e acessa tanto o site quanto a API sem erros de CORS. |
 
 Consumo total estimado: **~75 MB de memória RAM** e **0% CPU em repouso**.
 
@@ -46,9 +46,9 @@ nano .env
 
 Conteúdo esperado:
 ```env
-PORT=8001
+PORT=8002
 HOST=127.0.0.1
-CORS_ORIGINS=http://localhost:3001,http://127.0.0.1:3001
+CORS_ORIGINS=http://localhost:3002,http://127.0.0.1:3002
 JWT_SECRET=seu-jwt-secret-aqui
 JWT_ALGORITHM=HS256
 JWT_EXPIRE_DAYS=30
@@ -86,7 +86,7 @@ No painel da Cloudflare:
    - **Subdomain:** `financas` (ou outro nome desejado)
    - **Domain:** Selecione seu domínio (ex: `seusite.com`)
    - **Service Type:** `HTTP`
-   - **URL:** `localhost:3001`
+   - **URL:** `localhost:3002`
 4. Clique em **Save hostname**.
 
 > 🎉 **Pronto!** Em poucos segundos, seu sistema estará acessível em `https://financas.seusite.com` com HTTPS automático, bot do Discord online e funcionando no celular e no computador.

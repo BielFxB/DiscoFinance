@@ -6,9 +6,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DIST_DIR = path.join(__dirname, 'dist');
-const PORT = parseInt(process.env.PORT || '3001', 10);
+const PORT = parseInt(process.env.PORT || '3002', 10);
 const HOST = process.env.HOST || '0.0.0.0';
-const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:8001';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://127.0.0.1:8002';
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',

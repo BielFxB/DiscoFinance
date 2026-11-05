@@ -1,6 +1,6 @@
 export const API_BASE_URL = import.meta.env.VITE_API_URL !== undefined 
   ? import.meta.env.VITE_API_URL 
-  : (import.meta.env.DEV ? 'http://127.0.0.1:8001' : '');
+  : (import.meta.env.DEV ? 'http://127.0.0.1:8002' : '');
 
 export function getToken() {
   return localStorage.getItem('discfinanci_token');
@@ -48,7 +48,7 @@ export async function apiRequest(endpoint, options = {}) {
     });
   } catch (err) {
     window.dispatchEvent(new CustomEvent('backend_offline', { detail: { url, error: err } }));
-    throw new Error('Servidor backend offline (porta 8001). Certifique-se de que a janela do DiscFinanci está aberta.');
+    throw new Error('Servidor backend offline (porta 8002). Certifique-se de que a janela do DiscFinanci está aberta.');
   }
 
   window.dispatchEvent(new CustomEvent('backend_online'));

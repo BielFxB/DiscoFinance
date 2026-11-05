@@ -200,7 +200,7 @@ export default function App() {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
             </span>
             <span>
-              <strong className="text-white">Servidor Backend Desconectado (Porta 8001)</strong> — 
+              <strong className="text-white">Servidor Backend Desconectado (Porta 8002)</strong> — 
               O backend não está respondendo. Execute o arquivo <strong>start.bat</strong> na pasta do projeto.
             </span>
           </div>

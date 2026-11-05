@@ -4,10 +4,10 @@ from pydantic_settings import BaseSettings
 from pydantic import Field
 
 class Settings(BaseSettings):
-    PORT: int = Field(default=8001, alias="PORT")
+    PORT: int = Field(default=8002, alias="PORT")
     HOST: str = Field(default="127.0.0.1", alias="HOST")
     CORS_ORIGINS: str = Field(
-        default="http://localhost:3001,http://127.0.0.1:3001",
+        default="http://localhost:3002,http://127.0.0.1:3002,http://localhost:3001,http://127.0.0.1:3001",
         alias="CORS_ORIGINS"
     )
     
